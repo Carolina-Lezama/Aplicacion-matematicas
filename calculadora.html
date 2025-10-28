@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora - Matematicas para pequeñines</title>
+    <link rel="stylesheet" href="css/calculadora.css">
+</head>
+<body>
+    <!-- Floating Numbers -->
+    <div class="floating-number">1</div>
+    <div class="floating-number">2</div>
+    <div class="floating-number">3</div>
+    <div class="floating-number">+</div>
+    <div class="floating-number">×</div>
+    <div class="floating-number">=</div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" id="backBtn">← Volver al Menú</button>
+            <div class="header-title">
+                <div class="header-icon">🔢</div>
+                <div class="header-text">
+                    <h1>Calculadora Inteligente</h1>
+                    <p>Resuelve operaciones de forma rápida y precisa</p>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="basic">Básica</button>
+                <button class="mode-btn" data-mode="scientific">Científica</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Calculator Section -->
+        <div class="calculator-section">
+            <div class="calculator">
+                <!-- Display -->
+                <div class="display-container">
+                    <div class="display-history" id="displayHistory"></div>
+                    <div class="display-main" id="displayMain">0</div>
+                </div>
+
+                <!-- Scientific Panel -->
+                <div class="scientific-panel" id="scientificPanel">
+                    <button class="calc-btn scientific" data-function="sin">sin</button>
+                    <button class="calc-btn scientific" data-function="cos">cos</button>
+                    <button class="calc-btn scientific" data-function="tan">tan</button>
+                    <button class="calc-btn scientific" data-function="log">log</button>
+                    <button class="calc-btn scientific" data-function="ln">ln</button>
+                    <button class="calc-btn scientific" data-function="sqrt">√</button>
+                    <button class="calc-btn scientific" data-function="pow">x²</button>
+                    <button class="calc-btn scientific" data-function="pi">π</button>
+                </div>
+
+                <!-- Calculator Buttons -->
+                <div class="calculator-buttons">
+                    <button class="calc-btn clear" id="clearBtn">AC</button>
+                    <button class="calc-btn function" id="deleteBtn">DEL</button>
+                    <button class="calc-btn function" id="percentBtn">%</button>
+                    <button class="calc-btn operator" data-operator="/">÷</button>
+
+                    <button class="calc-btn" data-number="7">7</button>
+                    <button class="calc-btn" data-number="8">8</button>
+                    <button class="calc-btn" data-number="9">9</button>
+                    <button class="calc-btn operator" data-operator="*">×</button>
+
+                    <button class="calc-btn" data-number="4">4</button>
+                    <button class="calc-btn" data-number="5">5</button>
+                    <button class="calc-btn" data-number="6">6</button>
+                    <button class="calc-btn operator" data-operator="-">−</button>
+
+                    <button class="calc-btn" data-number="1">1</button>
+                    <button class="calc-btn" data-number="2">2</button>
+                    <button class="calc-btn" data-number="3">3</button>
+                    <button class="calc-btn operator" data-operator="+">+</button>
+
+                    <button class="calc-btn zero" data-number="0">0</button>
+                    <button class="calc-btn" data-number=".">.</button>
+                    <button class="calc-btn equals" id="equalsBtn">=</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Memory Card -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">💾 Memoria</div>
+                <div class="memory-display">
+                    <div class="memory-label">Valor en Memoria</div>
+                    <div class="memory-value" id="memoryValue">0</div>
+                </div>
+                <div class="memory-buttons">
+                    <button class="memory-btn" id="memoryAddBtn">M+</button>
+                    <button class="memory-btn" id="memorySubtractBtn">M−</button>
+                    <button class="memory-btn" id="memoryRecallBtn">MR</button>
+                    <button class="memory-btn" id="memoryClearBtn">MC</button>
+                </div>
+            </div>
+
+            <!-- History Card -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">📜 Historial</div>
+                <div class="history-list" id="historyList">
+                    <div class="history-empty">
+                        No hay cálculos recientes
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulas Card -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">📐 Fórmulas Rápidas</div>
+                <div class="quick-formulas">
+                    <div class="formula-card" data-formula="area-square">
+                        <div class="formula-name">Área Cuadrado</div>
+                        <div class="formula-expression">A = lado²</div>
+                    </div>
+                    <div class="formula-card" data-formula="area-circle">
+                        <div class="formula-name">Área Círculo</div>
+                        <div class="formula-expression">A = π × r²</div>
+                    </div>
+                    <div class="formula-card" data-formula="area-triangle">
+                        <div class="formula-name">Área Triángulo</div>
+                        <div class="formula-expression">A = (b × h) ÷ 2</div>
+                    </div>
+                    <div class="formula-card" data-formula="pythagoras">
+                        <div class="formula-name">Teorema de Pitágoras</div>
+                        <div class="formula-expression">a² + b² = c²</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Card -->
+            <div class="sidebar-card">
+                <div class="tips-card">
+                    <div class="tips-title">
+                        <span>💡</span>
+                        <span>Consejos</span>
+                    </div>
+                    <ul class="tips-list">
+                        <li>Usa AC para limpiar todo</li>
+                        <li>DEL borra el último dígito</li>
+                        <li>Guarda valores en memoria con M+</li>
+                        <li>Cambia a modo científico para más funciones</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/calculadora.js"></script>
+</body>
+</html>

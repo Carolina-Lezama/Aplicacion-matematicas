@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de Multiplicar - Matematicas para pequeñines</title>
+        <link rel="stylesheet" href="css/tablas.css">
+</head>
+<body>
+    <!-- Floating Stars -->
+    <div class="floating-star">⭐</div>
+    <div class="floating-star">✨</div>
+    <div class="floating-star">🌟</div>
+    <div class="floating-star">⭐</div>
+    <div class="floating-star">✨</div>
+    <div class="floating-star">🌟</div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" id="backBtn">← Volver al Menú</button>
+            <div class="header-title">
+                <div class="header-icon">✖️</div>
+                <div class="header-text">
+                    <h1>Tablas de Multiplicar</h1>
+                    <p>¡Conviértete en un maestro de las multiplicaciones!</p>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="timer-display">
+                <span>⏱️</span>
+                <span id="timerDisplay">00:00</span>
+            </div>
+            <div class="score-display">
+                <span>⭐</span>
+                <span id="scoreDisplay">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Table Selector -->
+        <div class="table-selector">
+            <div class="selector-title">📋 Selecciona Tabla</div>
+            <div class="tables-grid">
+                <button class="table-btn" data-table="1">Tabla del 1</button>
+                <button class="table-btn completed" data-table="2">Tabla del 2</button>
+                <button class="table-btn completed" data-table="3">Tabla del 3</button>
+                <button class="table-btn" data-table="4">Tabla del 4</button>
+                <button class="table-btn selected" data-table="5">Tabla del 5</button>
+                <button class="table-btn" data-table="6">Tabla del 6</button>
+                <button class="table-btn" data-table="7">Tabla del 7</button>
+                <button class="table-btn" data-table="8">Tabla del 8</button>
+                <button class="table-btn" data-table="9">Tabla del 9</button>
+                <button class="table-btn" data-table="10">Tabla del 10</button>
+                <button class="table-btn" data-table="11">Tabla del 11</button>
+                <button class="table-btn" data-table="12">Tabla del 12</button>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="difficulty-selector">
+                <div class="difficulty-label">🎯 Dificultad</div>
+                <div class="difficulty-options">
+                    <button class="difficulty-btn active" data-difficulty="easy">
+                        <span>😊</span>
+                        <span>Fácil - Con opciones</span>
+                    </button>
+                    <button class="difficulty-btn" data-difficulty="medium">
+                        <span>😎</span>
+                        <span>Medio - Escribe respuesta</span>
+                    </button>
+                    <button class="difficulty-btn" data-difficulty="hard">
+                        <span>🔥</span>
+                        <span>Difícil - Contra el tiempo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area">
+            <div class="progress-section">
+                <div class="question-counter">
+                    Pregunta <span id="currentQuestion">1</span> de <span id="totalQuestions">10</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="streak-counter">
+                    <span>🔥</span>
+                    <span id="streakCount">0</span>
+                </div>
+            </div>
+
+            <div class="question-display">
+                <div class="question-text">
+                    <span id="firstNumber">5</span>
+                    <span class="multiplication-sign"> × </span>
+                    <span id="secondNumber">7</span>
+                </div>
+            </div>
+
+            <!-- Input Mode (Medium Difficulty) -->
+            <div class="answer-input-container" id="inputMode" style="display: none;">
+                <span class="equals-sign">=</span>
+                <input type="number" class="answer-input" id="answerInput" placeholder="?" maxlength="3">
+            </div>
+
+            <!-- Multiple Choice Mode (Easy Difficulty) -->
+            <div class="answer-options" id="optionsMode">
+                <button class="option-btn" data-answer="30">30</button>
+                <button class="option-btn" data-answer="35">35</button>
+                <button class="option-btn" data-answer="40">40</button>
+                <button class="option-btn" data-answer="32">32</button>
+                <button class="option-btn" data-answer="38">38</button>
+                <button class="option-btn" data-answer="42">42</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-secondary" id="skipBtn">⏭️ Saltar</button>
+                <button class="btn-primary" id="checkBtn">✓ Verificar</button>
+                <button class="btn-primary" id="nextBtn" style="display: none;">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Stats Sidebar -->
+        <div class="stats-sidebar">
+            <!-- Current Stats -->
+            <div class="stats-card">
+                <div class="stats-title">📊 Estadísticas</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number" id="correctCount">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="incorrectCount">0</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="accuracyPercent">0%</div>
+                        <div class="stat-label">Precisión</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="bestTime">--</div>
+                        <div class="stat-label">Mejor tiempo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="stats-card">
+                <div class="stats-title">🏆 Top 5</div>
+                <ul class="leaderboard">
+                    <li class="leaderboard-item">
+                        <div class="leaderboard-rank first">1</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">María G.</div>
+                            <div class="leaderboard-score">2,450 pts</div>
+                        </div>
+                    </li>
+                    <li class="leaderboard-item">
+                        <div class="leaderboard-rank second">2</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Carlos M.</div>
+                            <div class="leaderboard-score">2,180 pts</div>
+                        </div>
+                    </li>
+                    <li class="leaderboard-item">
+                        <div class="leaderboard-rank third">3</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Ana L.</div>
+                            <div class="leaderboard-score">1,920 pts</div>
+                        </div>
+                    </li>
+                    <li class="leaderboard-item">
+                        <div class="leaderboard-rank">4</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Pedro S.</div>
+                            <div class="leaderboard-score">1,750 pts</div>
+                        </div>
+                    </li>
+                    <li class="leaderboard-item">
+                        <div class="leaderboard-rank">5</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Lucía R.</div>
+                            <div class="leaderboard-score">1,680 pts</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Achievements -->
+            <div class="stats-card">
+                <div class="stats-title">🎖️ Logros</div>
+                <div class="achievements-grid">
+                    <div class="achievement-badge unlocked">
+                        <div class="achievement-icon">🌟</div>
+                        <div class="achievement-name">Primera Victoria</div>
+                    </div>
+                    <div class="achievement-badge unlocked">
+                        <div class="achievement-icon">🔥</div>
+                        <div class="achievement-name">Racha x5</div>
+                    </div>
+                    <div class="achievement-badge locked">
+                        <div class="achievement-icon">⚡</div>
+                        <div class="achievement-name">Veloz</div>
+                    </div>
+                    <div class="achievement-badge locked">
+                        <div class="achievement-icon">💯</div>
+                        <div class="achievement-name">Perfecto</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="stats-card">
+                <div class="tips-box">
+                    <div class="stats-title" style="margin-bottom: 15px;">💡 Consejo</div>
+                    <p class="tips-text" id="tipText">
+                        Para la tabla del 5, el resultado siempre termina en 0 o 5. ¡Es muy fácil!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/tablas.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fracciones - Matematicas para pequeñines</title>
+    <link rel="stylesheet" href="css/fracciones.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" id="backBtn">← Volver al Menú</button>
+            <div class="header-title">
+                <div class="header-icon">🍕</div>
+                <div class="header-text">
+                    <h1>Fracciones Divertidas</h1>
+                    <p>Aprende a comparar y resolver fracciones</p>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="level-badge">
+                <span>Nivel 1</span>
+            </div>
+            <div class="score-display">
+                <span>⭐</span>
+                <span id="score">0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Game Area -->
+        <div class="game-area">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Question Section -->
+            <div class="question-section">
+                <div class="question-number">Pregunta <span id="questionNum">1</span> de 10</div>
+                <div class="question-text" id="questionText">¿Cuál fracción es mayor?</div>
+            </div>
+
+            <!-- Visualization -->
+            <div class="visualization" id="visualization">
+                <div class="fraction-visual">
+                    <div class="pizza-container">
+                        <div class="pizza" id="pizza1">
+                            <!-- Las porciones se generarán dinámicamente con JS -->
+                        </div>
+                    </div>
+                    <div class="fraction-label">
+                        <div class="fraction-numerator" id="numerator1">3</div>
+                        <div class="fraction-denominator" id="denominator1">4</div>
+                    </div>
+                </div>
+
+                <div class="comparison-symbol" id="comparisonSymbol">?</div>
+
+                <div class="fraction-visual">
+                    <div class="pizza-container">
+                        <div class="pizza" id="pizza2">
+                            <!-- Las porciones se generarán dinámicamente con JS -->
+                        </div>
+                    </div>
+                    <div class="fraction-label">
+                        <div class="fraction-numerator" id="numerator2">2</div>
+                        <div class="fraction-denominator" id="denominator2">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Answer Options -->
+            <div class="answer-options" id="answerOptions">
+                <button class="answer-btn" data-answer="<">&lt;</button>
+                <button class="answer-btn" data-answer="=">=</button>
+                <button class="answer-btn" data-answer=">">&gt;</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-secondary" id="hintBtn">💡 Pista</button>
+                <button class="btn-primary" id="nextBtn" style="display:none;">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Statistics -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">📊 Estadísticas</div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-number" id="correctAnswers">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="incorrectAnswers">0</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="accuracyRate">0%</div>
+                        <div class="stat-label">Precisión</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="timeElapsed">0:00</div>
+                        <div class="stat-label">Tiempo</div>
+                    </div>
+                </div>
+                <div class="streak-display">
+                    <span class="streak-flame active">🔥</span>
+                    <span class="streak-flame active">🔥</span>
+                    <span class="streak-flame active">🔥</span>
+                    <span class="streak-flame">🔥</span>
+                    <span class="streak-flame">🔥</span>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">🏆 Logros</div>
+                <div class="achievements-list">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">⭐</div>
+                        <div class="achievement-info">
+                            <div class="achievement-name">Primera Victoria</div>
+                            <div class="achievement-desc">Responde correctamente</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item achievement-locked">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-info">
+                            <div class="achievement-name">Racha de 5</div>
+                            <div class="achievement-desc">5 respuestas seguidas</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item achievement-locked">
+                        <div class="achievement-icon">💯</div>
+                        <div class="achievement-info">
+                            <div class="achievement-name">Perfección</div>
+                            <div class="achievement-desc">10/10 correctas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="sidebar-card">
+                <div class="sidebar-title">💡 Consejo</div>
+                <div class="tips-box">
+                    <p class="tips-text">Para comparar fracciones, imagina que son pizzas. ¿Cuál te daría más pizza para comer?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/fracciones.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema de Círculos Fraccionados</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    canvas { border: 1px solid black; margin-top: 15px; display: block; }
+    .panel { display: flex; flex-direction: column; gap: 8px; width: 250px; }
+    input, button { padding: 5px; font-size: 14px; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🎯 Sistema de Círculos Fraccionados con JavaScript</h1>
+  <div class="panel">
+    <label>X: <input type="number" id="x" placeholder="Coordenada X"></label>
+    <label>Y: <input type="number" id="y" placeholder="Coordenada Y"></label>
+    <label>Radio: <input type="number" id="radio" value="80"></label>
+    <label>Numerador: <input type="number" id="num" placeholder="Ej. 1"></label>
+    <label>Denominador: <input type="number" id="den" placeholder="Ej. 4"></label>
+    <button id="dibujar">Dibujar círculo</button>
+    <button id="limpiar">Limpiar lienzo</button>
+  </div>
+
+  <canvas id="lienzo" width="500" height="400"></canvas>
+
+  <script type="module">
+    import { Punto } from "./punto.js";
+    import { Fraccion } from "./fraccion.js";
+    import { Circulo } from "./circulo.js";
+
+    const canvas = document.getElementById("lienzo");
+    const ctx = canvas.getContext("2d");
+
+    document.getElementById("dibujar").addEventListener("click", () => {
+      const x = parseFloat(document.getElementById("x").value);
+      const y = parseFloat(document.getElementById("y").value);
+      const r = parseFloat(document.getElementById("radio").value);
+      const num = parseFloat(document.getElementById("num").value);
+      const den = parseFloat(document.getElementById("den").value);
+
+      // Verificar que todos los campos estén completos
+      if (isNaN(x) || isNaN(y) || isNaN(num) || isNaN(den)) {
+        alert("⚠️ Por favor llena todos los parámetros: X, Y, numerador y denominador.");
+        return;
+      }
+
+      // Crear fracción y círculo
+      const fr = new Fraccion(num, den);
+      fr.simplificar();
+      const c = new Circulo(x, y, r, fr);
+
+      // Dibujar
+      c.dibujarFraccion(ctx);
+    });
+
+    document.getElementById("limpiar").addEventListener("click", () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  </script>
+</body>
+</html>

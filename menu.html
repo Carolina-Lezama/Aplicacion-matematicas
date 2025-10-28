@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Kids - Menú Principal</title>
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>    <!-- Perfil de usuario -->
+    <div class="user-profile">
+        <div class="user-avatar">
+            <img src="images/icono_2.png" alt="" class="icono">
+        </div>
+        <div class="user-info">
+            <span class="user-name">Yo</span>
+            <span class="user-points">150 puntos</span>
+        </div>
+    </div>
+
+    <!-- Encabezado -->
+    <div class="header">
+        <h1>Matematicas para pequeñines</h1>
+        <p>¡Elige tu aventura matemática!</p>
+    </div>
+
+    <!-- Barra de estadísticas -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">19</div>
+            <div class="stat-label">Lecciones disponibles</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">95</div>
+            <div class="stat-label">Estrellas en total</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">19</div>
+            <div class="stat-label">Trofeos</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Días de racha </div>
+        </div>
+    </div>
+
+    <!-- Menú de opciones -->
+    <div class="menu-container">
+        <!-- Fracciones -->
+        <div class="menu-card card-fractions" onclick="openActivity('fracciones')">
+            <div class="card-icon">🍕</div>
+            <h3 class="card-title">Fracciones</h3>
+            <p class="card-description">Aprende a dividir y comparar fracciones de forma divertida con pizzas y pasteles.</p>
+            <span class="card-badge">12 Niveles</span>
+        </div>
+
+        <!-- Figuras Geométricas -->
+        <div class="menu-card card-geometry" onclick="openActivity('geometria')">
+            <div class="card-icon">📐</div>
+            <h3 class="card-title">Geometría</h3>
+            <p class="card-description">Descubre formas, ángulos y perímetros. ¡Construye figuras increíbles!</p>
+            <span class="card-badge">15 Niveles</span>
+        </div>
+
+        <!-- Calculadora -->
+        <div class="menu-card card-calculator" onclick="openActivity('calculadora')">
+            <div class="card-icon">🔢</div>
+            <h3 class="card-title">Calculadora</h3>
+            <p class="card-description">Practica operaciones básicas y avanzadas con nuestra calculadora interactiva.</p>
+            <span class="card-badge">Herramienta</span>
+        </div>
+
+        <!-- Tablas de Multiplicar -->
+        <div class="menu-card card-tables" onclick="openActivity('tablas')">
+            <div class="card-icon">✖️</div>
+            <h3 class="card-title">Tablas de Multiplicar</h3>
+            <p class="card-description">Memoriza las tablas del 1 al 12 con juegos y desafíos cronometrados.</p>
+            <span class="card-badge">10 Niveles</span>
+        </div>
+
+        <!-- Operaciones Básicas -->
+        <div class="menu-card card-operations" onclick="openActivity('operaciones')">
+            <div class="card-icon">➕</div>
+            <h3 class="card-title">Operaciones</h3>
+            <p class="card-description">Suma, resta, multiplica y divide. ¡Mejora tu velocidad mental!</p>
+            <span class="card-badge">20 Niveles</span>
+        </div>
+    </div>
+    <script src="js/menu.js"></script>
+</body>
+</html>

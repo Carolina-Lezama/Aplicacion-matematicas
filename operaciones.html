@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Básicas - Matematicas para pequeñines</title>
+    <link rel="stylesheet" href="css/operaciones.css">
+</head>
+<body>
+    <!-- Floating Symbols -->
+    <div class="floating-symbol">+</div>
+    <div class="floating-symbol">−</div>
+    <div class="floating-symbol">×</div>
+    <div class="floating-symbol">÷</div>
+    <div class="floating-symbol">=</div>
+    <div class="floating-symbol">?</div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" id="backBtn">← Volver al Menú</button>
+            <div class="header-title">
+                <div class="header-icon">➕</div>
+                <div class="header-text">
+                    <h1>Operaciones Básicas</h1>
+                    <p>¡Domina las operaciones matemáticas!</p>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="level-display">
+                <span>📊</span>
+                <span>Nivel <span id="currentLevel">5</span></span>
+            </div>
+            <div class="score-display">
+                <span>⭐</span>
+                <span id="totalScore">1,250</span>
+            </div>
+            <div class="lives-display" id="livesDisplay">
+                <span class="life-heart">❤️</span>
+                <span class="life-heart">❤️</span>
+                <span class="life-heart">❤️</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Operation Selector -->
+        <div class="operation-selector">
+            <div class="selector-title">🎯 Configuración</div>
+            
+            <div class="operations-grid">
+                <button class="operation-btn addition selected" data-operation="addition">
+                    <span>+</span>
+                    <span class="operation-name">Suma</span>
+                </button>
+                <button class="operation-btn subtraction" data-operation="subtraction">
+                    <span>−</span>
+                    <span class="operation-name">Resta</span>
+                </button>
+                <button class="operation-btn multiplication" data-operation="multiplication">
+                    <span>×</span>
+                    <span class="operation-name">Multiplicación</span>
+                </button>
+                <button class="operation-btn division" data-operation="division">
+                    <span>÷</span>
+                    <span class="operation-name">División</span>
+                </button>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="range-selector">
+                <label class="range-label">Rango de números</label>
+                <input type="range" class="range-input" id="rangeSlider" min="10" max="100" value="20" step="10">
+                <div class="range-value">1 - <span id="rangeValue">20</span></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="selector-title" style="font-size: 16px; margin-bottom: 15px;">🎮 Modo de Juego</div>
+            <div class="game-modes">
+                <button class="game-mode-btn active" data-mode="practice">
+                    <span class="mode-icon">📝</span>
+                    <div class="mode-info">
+                        <div class="mode-name">Práctica Libre</div>
+                        <div class="mode-desc">Sin límite de tiempo</div>
+                    </div>
+                </button>
+                <button class="game-mode-btn" data-mode="timed">
+                    <span class="mode-icon">⏱️</span>
+                    <div class="mode-info">
+                        <div class="mode-name">Contra el Tiempo</div>
+                        <div class="mode-desc">60 segundos</div>
+                    </div>
+                </button>
+                <button class="game-mode-btn" data-mode="challenge">
+                    <span class="mode-icon">🏆</span>
+                    <div class="mode-info">
+                        <div class="mode-name">Desafío</div>
+                        <div class="mode-desc">10 preguntas seguidas</div>
+                    </div>
+                </button>
+            </div>
+
+            <button class="start-btn" id="startGameBtn">🚀 Comenzar Juego</button>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area">
+            <div class="progress-header">
+                <div class="question-info">
+                    <div class="question-number">
+                        Pregunta <span id="currentQuestion">1</span>/<span id="totalQuestions">10</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="timer-badge" id="timerBadge">00:00</div>
+            </div>
+
+            <div class="question-display">
+                <div class="equation-container">
+                    <div class="number" id="firstNumber">8</div>
+                    <div class="operator" id="operatorSymbol">+</div>
+                    <div class="number" id="secondNumber">5</div>
+                    <div class="equals">=</div>
+                    <div class="answer-box" id="answerBox">
+                        <input type="number" class="answer-input-field" id="answerField" placeholder="?">
+                    </div>
+                </div>
+
+                <!-- Multiple Choice Mode (Alternative) -->
+                <div class="answer-options-grid" id="answerOptions" style="display: none;">
+                    <button class="answer-option" data-answer="10">10</button>
+                    <button class="answer-option" data-answer="13">13</button>
+                    <button class="answer-option" data-answer="15">15</button>
+                    <button class="answer-option" data-answer="12">12</button>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button class="btn-secondary" id="skipBtn">⏭️ Saltar</button>
+                <button class="btn-primary" id="checkAnswerBtn">✓ Verificar</button>
+                <button class="btn-primary" id="nextBtn" style="display: none;">Siguiente →</button>
+            </div>
+        </div>
+
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stats-card">
+                <div class="stats-title">📊 Estadísticas</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="correctAnswers">8</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="incorrectAnswers">2</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="accuracyRate">80%</div>
+                        <div class="stat-label">Precisión</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="streakCount">5</div>
+                        <div class="stat-label">Racha</div>
+                    </div>
+                </div>
+                <div class="speed-meter">
+                    <div class="speed-label">VELOCIDAD DE RESPUESTA</div>
+                    <div class="speed-bar">
+                        <div class="speed-fill" id="speedFill"></div>
+                    </div>
+                    <div class="speed-text" id="speedText">Rápido 🚀</div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="stats-title">📝 Últimas Respuestas</div>
+                <ul class="recent-answers" id="recentAnswers">
+                    <li class="recent-item">
+                        <span class="recent-equation">8 + 5 = 13</span>
+                        <span class="recent-status">✓</span>
+                    </li>
+                    <li class="recent-item">
+                        <span class="recent-equation">12 - 7 = 5</span>
+                        <span class="recent-status">✓</span>
+                    </li>
+                    <li class="recent-item">
+                        <span class="recent-equation">6 × 4 = 24</span>
+                        <span class="recent-status">✓</span>
+                    </li>
+                    <li class="recent-item">
+                        <span class="recent-equation">15 + 8 = 22</span>
+                        <span class="recent-status">✗</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="motivational-card">
+                <div class="motivational-icon">🎉</div>
+                <div class="motivational-text">¡Excelente trabajo!</div>
+                <div class="motivational-subtext">Llevas 5 respuestas correctas seguidas</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/operaciones.js"></script>
+</body>
+</html>

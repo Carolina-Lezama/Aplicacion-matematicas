@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometría - Matematicas para pequeñines</title>
+    <link rel="stylesheet" href="css/geometria.css">
+</head>
+<body>
+    <!-- Floating Shapes -->
+    <div class="floating-shape">
+        <div class="shape-triangle"></div>
+    </div>
+    <div class="floating-shape">
+        <div class="shape-square"></div>
+    </div>
+    <div class="floating-shape">
+        <div class="shape-circle"></div>
+    </div>
+    <div class="floating-shape">
+        <div class="shape-triangle"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <button class="back-btn" id="backBtn">← Volver al Menú</button>
+            <div class="header-title">
+                <div class="header-icon">📐</div>
+                <div class="header-text">
+                    <h1>Geometría Creativa</h1>
+                    <p>Explora formas, ángulos y medidas</p>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="draw">✏️ Dibujar</button>
+                <button class="mode-btn" data-mode="learn">📚 Aprender</button>
+                <button class="mode-btn" data-mode="quiz">🎯 Practicar</button>
+            </div>
+            <div class="score-display">
+                <span>⭐</span>
+                <span id="score">125</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Toolbox -->
+        <div class="toolbox">
+            <div class="toolbox-title">🎨 Herramientas</div>
+            
+            <div class="shapes-grid">
+                <div class="shape-tool selected" data-shape="triangle">
+                    <div class="shape-icon">🔺</div>
+                    <div class="shape-name">Triángulo</div>
+                </div>
+                <div class="shape-tool" data-shape="square">
+                    <div class="shape-icon">⬜</div>
+                    <div class="shape-name">Cuadrado</div>
+                </div>
+                <div class="shape-tool" data-shape="rectangle">
+                    <div class="shape-icon">▭</div>
+                    <div class="shape-name">Rectángulo</div>
+                </div>
+                <div class="shape-tool" data-shape="circle">
+                    <div class="shape-icon">⚪</div>
+                    <div class="shape-name">Círculo</div>
+                </div>
+                <div class="shape-tool" data-shape="pentagon">
+                    <div class="shape-icon">⬟</div>
+                    <div class="shape-name">Pentágono</div>
+                </div>
+                <div class="shape-tool" data-shape="hexagon">
+                    <div class="shape-icon">⬡</div>
+                    <div class="shape-name">Hexágono</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="toolbox-title" style="font-size: 16px; margin-bottom: 15px;">🎨 Colores</div>
+            <div class="color-palette">
+                <div class="color-option selected" data-color="#ff6b6b" style="background: #ff6b6b;"></div>
+                <div class="color-option" data-color="#4ecdc4" style="background: #4ecdc4;"></div>
+                <div class="color-option" data-color="#45b7d1" style="background: #45b7d1;"></div>
+                <div class="color-option" data-color="#f9ca24" style="background: #f9ca24;"></div>
+                <div class="color-option" data-color="#6c5ce7" style="background: #6c5ce7;"></div>
+                <div class="color-option" data-color="#a29bfe" style="background: #a29bfe;"></div>
+                <div class="color-option" data-color="#fd79a8" style="background: #fd79a8;"></div>
+                <div class="color-option" data-color="#fab1a0" style="background: #fab1a0;"></div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="properties-panel">
+                <div class="toolbox-title" style="font-size: 16px; margin-bottom: 15px;">⚙️ Propiedades</div>
+                <div class="property-item">
+                    <label class="property-label">Tamaño</label>
+                    <input type="range" class="property-input" id="sizeSlider" min="50" max="300" value="150">
+                </div>
+                <div class="property-item">
+                    <label class="property-label">Rotación</label>
+                    <input type="range" class="property-input" id="rotationSlider" min="0" max="360" value="0">
+                </div>
+                <div class="property-item">
+                    <label class="property-label">Borde (px)</label>
+                    <input type="number" class="property-input" id="borderWidth" min="0" max="10" value="3">
+                </div>
+            </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-area">
+            <div class="canvas-header">
+                <div class="canvas-title">Área de Trabajo</div>
+                <div class="canvas-actions">
+                    <button class="action-btn" id="clearBtn">
+                        <span>🗑️</span>
+                        <span>Limpiar</span>
+                    </button>
+                    <button class="action-btn" id="undoBtn">
+                        <span>↶</span>
+                        <span>Deshacer</span>
+                    </button>
+                    <button class="action-btn" id="saveBtn">
+                        <span>💾</span>
+                        <span>Guardar</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="canvas-container" id="canvasContainer">
+                <canvas id="geometryCanvas" width="800" height="500"></canvas>
+                <div class="canvas-placeholder" id="placeholder" style="display: none;">
+                    <div class="canvas-placeholder-icon">📐</div>
+                    <div class="canvas-placeholder-text">Selecciona una forma y haz clic para dibujar</div>
+                </div>
+                <label class="grid-toggle">
+                    <input type="checkbox" id="gridToggle" checked>
+                    <span>Mostrar cuadrícula</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="info-panel">
+            <div class="info-card">
+                <div class="info-card-title">
+                    <span>📊</span>
+                    <span>Información</span>
+                </div>
+                <div class="info-card-content">
+                    Figura seleccionada: <strong id="selectedShape">Triángulo</strong>
+                </div>
+                <div class="formula-display" id="formulaDisplay">
+                    Área = (base × altura) ÷ 2
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-card-title">
+                    <span>📏</span>
+                    <span>Medidas</span>
+                </div>
+                <ul class="measurements-list" id="measurementsList">
+                    <li>
+                        <span class="measurement-label">Perímetro:</span>
+                        <span class="measurement-value" id="perimeterValue">--</span>
+                    </li>
+                    <li>
+                        <span class="measurement-label">Área:</span>
+                        <span class="measurement-value" id="areaValue">--</span>
+                    </li>
+                    <li>
+                        <span class="measurement-label">Lados:</span>
+                        <span class="measurement-value" id="sidesValue">3</span>
+                    </li>
+                    <li>
+                        <span class="measurement-label">Ángulos:</span>
+                        <span class="measurement-value" id="anglesValue">180°</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="challenge-box">
+                <div class="challenge-title">
+                    <span>🎯</span>
+                    <span>Desafío Actual</span>
+                </div>
+                <div class="challenge-text" id="challengeText">
+                    Dibuja 3 triángulos diferentes y calcula su área
+                </div>
+                <div class="challenge-progress">
+                    <div class="challenge-step completed"></div>
+                    <div class="challenge-step"></div>
+                    <div class="challenge-step"></div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="quick-action-btn" id="randomShapeBtn">
+                    <span class="quick-action-icon">🎲</span>
+                    <span>Forma Aleatoria</span>
+                </button>
+                <button class="quick-action-btn" id="tutorialBtn">
+                    <span class="quick-action-icon">📖</span>
+                    <span>Ver Tutorial</span>
+                </button>
+                <button class="quick-action-btn" id="examplesBtn">
+                    <span class="quick-action-icon">💡</span>
+                    <span>Ver Ejemplos</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="js/geometria.js"></script>
+</body>
+</html>
